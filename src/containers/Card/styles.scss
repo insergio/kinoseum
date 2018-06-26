@@ -1,0 +1,20 @@
+.movie-card{
+    margin-bottom: 40px;
+    .description{
+        color: white;
+        max-width: 600px;
+        text-align: left;
+        margin: auto;
+        padding: 0px 20px;
+    }
+    .name{
+        color: white;
+        h2{
+            margin-top: 20px;
+            margin-bottom: 7px;
+        }
+    }
+    .poster{
+        max-width: 100%;
+    }
+}

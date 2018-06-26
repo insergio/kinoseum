@@ -1,0 +1,10 @@
+.movie-input {
+  background-color: #222;
+  height: 30px;
+  border: 0px;
+  border-bottom: 1px solid #888;
+  color: white;
+  font-size: 20px;
+  margin-bottom: 30px; }
+  .movie-input:focus {
+    outline: none; }
