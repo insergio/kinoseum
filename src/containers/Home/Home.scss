@@ -24,6 +24,37 @@
     }
 }
 
+.react-autosuggest__{
+    &input{
+        background-color: #222;
+        height: 30px;
+        border: 0px;
+        border-bottom: 1px solid #888;
+        color: white;
+        font-size: 20px;
+        &:focus{
+            outline: none;
+        }
+        margin-bottom: 30px;
+        ul{
+            
+    
+        }
+    }
+    &suggestions-list{
+        list-style: none;
+        padding-left: 0px;
+        li{
+
+            div{
+                color: white;
+            }
+        }
+
+    }
+
+}
+
 
 @keyframes App-logo-spin {
     from { transform: rotate(0deg); }

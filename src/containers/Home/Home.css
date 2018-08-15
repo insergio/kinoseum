@@ -16,6 +16,23 @@
   .App-intro {
     font-size: large; }
 
+.react-autosuggest__input {
+  background-color: #222;
+  height: 30px;
+  border: 0px;
+  border-bottom: 1px solid #888;
+  color: white;
+  font-size: 20px;
+  margin-bottom: 30px; }
+  .react-autosuggest__input:focus {
+    outline: none; }
+
+.react-autosuggest__suggestions-list {
+  list-style: none;
+  padding-left: 0px; }
+  .react-autosuggest__suggestions-list li div {
+    color: white; }
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg); }
