@@ -20,18 +20,30 @@
   background-color: #222;
   height: 30px;
   border: 0px;
+  width: 265px;
   border-bottom: 1px solid #888;
   color: white;
   font-size: 20px;
-  margin-bottom: 30px; }
+  margin-bottom: 0px; }
   .react-autosuggest__input:focus {
     outline: none; }
 
 .react-autosuggest__suggestions-list {
   list-style: none;
-  padding-left: 0px; }
-  .react-autosuggest__suggestions-list li div {
-    color: white; }
+  padding-left: 0px;
+  max-width: 265px;
+  margin: auto;
+  background-color: #111; }
+
+.react-autosuggest__suggestion {
+  padding: 5px 0px;
+  color: white; }
+  .react-autosuggest__suggestion--highlighted {
+    background-color: white;
+    color: black; }
+  .react-autosuggest__suggestion:last-child {
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px; }
 
 @keyframes App-logo-spin {
   from {

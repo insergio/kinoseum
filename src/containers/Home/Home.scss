@@ -29,26 +29,37 @@
         background-color: #222;
         height: 30px;
         border: 0px;
+        width: 265px;
         border-bottom: 1px solid #888;
         color: white;
         font-size: 20px;
         &:focus{
             outline: none;
         }
-        margin-bottom: 30px;
-        ul{
-            
-    
-        }
+        margin-bottom: 0px;
+       
     }
     &suggestions-list{
         list-style: none;
         padding-left: 0px;
-        li{
+        max-width: 265px;
+        margin: auto;
+       
+        background-color: #111;
 
-            div{
-                color: white;
-            }
+    }
+    &suggestion{
+        padding: 5px 0px;
+        color: white;
+
+        &--highlighted{
+            background-color: white;
+            color: black;
+        }
+
+        &:last-child{
+            border-bottom-left-radius: 7px;
+            border-bottom-right-radius: 7px;
         }
 
     }

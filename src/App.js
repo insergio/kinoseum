@@ -7,6 +7,10 @@ import {
   Link
 } from 'react-router-dom'
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faClock, faChair} from '@fortawesome/free-solid-svg-icons'
+
+library.add(faClock, faChair)
 
 const About = () => (
   <div>

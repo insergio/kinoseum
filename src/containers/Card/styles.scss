@@ -1,11 +1,11 @@
 .movie-card{
-    margin-bottom: 40px;
+    padding: 30px 10px 40px;
+    max-width: 600px;
+    margin: auto;
     .description{
         color: white;
-        max-width: 600px;
         text-align: left;
         margin: auto;
-        padding: 0px 20px;
     }
     .name{
         color: white;
@@ -16,5 +16,21 @@
     }
     .poster{
         max-width: 100%;
+        margin-top: 20px;
+    }
+    .movie-info{
+        .attribute{
+            margin-bottom: 5px;
+            p{
+                color: white;
+                display: inline;
+            }
+            .fa-icon{
+                color: #00D8FE;
+                margin-right: 5px;
+            }
+        }
+        margin-top: 30px;
+        text-align: left;
     }
 }

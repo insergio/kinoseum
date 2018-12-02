@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import logo from '../../logo.svg';
 import './Home.css';
-import '../../components/SearchInput';
-import SearchInput from '../../components/SearchInput';
 import Card from '../Card';
 import axios from 'axios'
 
 import Autosuggest from 'react-autosuggest';
+import { connect } from "react-redux";
+import { addArticle } from "../../actions/index";
+import { updateMovie } from "../../actions/index";
+import startMovies from "../../constants/startMovies"
 
 const getSuggestionValue = suggestion => suggestion.original_title;
 
@@ -36,9 +38,13 @@ class Home extends Component {
 
     console.log(inputValue)
     var params={
-      query: inputValue
+      api_key: this.props.apiKey,
+      language: this.props.language,
+      query: inputValue,
+      page: 1,
+      include_adult: false
     }
-    axios.get("https://api.themoviedb.org/3/search/movie?api_key=06e590e3160fe2ade8df4051574e71f2&language=es-ES&"+this.serialize(params)+"&page=1&include_adult=false")
+    axios.get("https://api.themoviedb.org/3/search/movie?"+this.serialize(params))
     .then(res => {
       let result;
       res.data.results.length>5 ? result=res.data.results.slice(0,5) : result = res.data.results
@@ -68,12 +74,18 @@ class Home extends Component {
 
 
   onSuggestionSelected = (event, {suggestion}) =>{
-    console.log("asdf");
     console.log(suggestion)
-    this.setState({
-      name: suggestion.original_title,
-      description: suggestion.overview,
-      poster: "http://image.tmdb.org/t/p/w342/"+suggestion.poster_path
+
+    var params={
+      api_key: this.props.apiKey,
+      language: this.props.language,
+      append_to_response: 'credits'
+
+    }
+    axios.get('https://api.themoviedb.org/3/movie/'+suggestion.id+'?'+this.serialize(params))
+    .then(res => {
+      console.log(res.data)
+      this.setMovie(res.data)
     })
   }
 
@@ -84,42 +96,24 @@ class Home extends Component {
     });
   };
 
-  onKeyUp = (event) => {
-    if (event.key === 'Enter') {
-      var params={
-        query: this.state.value
-      }
-      axios.get("https://api.themoviedb.org/3/search/movie?api_key=06e590e3160fe2ade8df4051574e71f2&language=es-ES&"+this.serialize(params)+"&page=1&include_adult=false")
-      .then(res => {
-        console.log(res.data.results[0])
-        console.log(res.data.results)
-        if(res.data.results.length>0){
-          this.setMovie(res.data.results[0])
-  
-        }
-    
-      })
-    }
-  };
-
-
-
-
-
 
   componentDidMount(){
 
-    axios.get(`https://api.themoviedb.org/3/search/movie?api_key=06e590e3160fe2ade8df4051574e71f2&language=es-ES&query=apocalypse%20now&page=1&include_adult=true`)
+    var startMovie = startMovies[Math.floor(Math.random()*startMovies.length)];
+
+    console.log(startMovie)
+
+
+    var params={
+      api_key: this.props.apiKey,
+      language: this.props.language,
+      append_to_response: 'credits'
+    }
+
+    axios.get('https://api.themoviedb.org/3/movie/'+startMovie.id+'?'+this.serialize(params))
     .then(res => {
-      console.log(res.data.results[0])
-      console.log(res.data.results)
-      
-      this.setMovie(res.data.results[0])
-      
-      this.setState({
-        test: res.data.results
-      })
-   
+      console.log(res.data)
+      this.setMovie(res.data)
     })
 
   }
@@ -127,12 +121,14 @@ class Home extends Component {
   
   setMovie=(movie)=>{
     console.log(movie.original_title)
-    this.setState({
-      name: movie.original_title,
-      description: movie.overview,
-      poster: "http://image.tmdb.org/t/p/w342/"+movie.poster_path
+    var directors = [];
+    movie.credits.crew.forEach(function(entry){
+        if (entry.job === 'Director') {
+            directors.push(entry.name);
+        }
     })
-    
+    movie.directors=directors.join(", ")
+    this.props.updateMovie(movie)
   }
 
   
@@ -186,4 +182,21 @@ class Home extends Component {
   }
 }
 
-  export default Home;
+  const mapStateToProps = state => {
+    return { 
+      articles: state.articles,
+      movie: state.movie,
+      apiKey: state.apiKey,
+      language: state.language
+     };
+    
+  };
+
+  const mapDispatchToProps = dispatch => {
+    return {
+      addArticle: article => dispatch(addArticle(article)),
+      updateMovie: movie => dispatch(updateMovie(movie))
+    };
+  };
+
+  export default connect(mapStateToProps, mapDispatchToProps)(Home);
