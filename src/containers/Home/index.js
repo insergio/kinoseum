@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import logo from '../../logo.svg';
 import './Home.css';
 import Card from '../Card';
+import Cast from '../Cast';
+
 import TranslationSwitch from '../TranslationSwitch';
 import axios from 'axios'
 import { withNamespaces } from "react-i18next";
 import i18n from '../../i18n';
 import Autosuggest from 'react-autosuggest';
 import { connect } from "react-redux";
-import { addArticle } from "../../actions/index";
 import { updateMovie } from "../../actions/index";
 import startMovies from "../../constants/startMovies"
 
@@ -88,12 +89,6 @@ class Home extends Component {
   };
 
 
-  componentDidMount(){
-    var startMovie = startMovies[Math.floor(Math.random()*startMovies.length)];
-    console.log(startMovie)
-    this.requestMovie(startMovie)
-  }
-
   requestMovie(movie){
 
     var params={
@@ -141,7 +136,14 @@ class Home extends Component {
       console.log(this.props.movie)
       this.requestMovie(this.props.movie)
     }
-}
+  }
+
+
+  componentDidMount(){
+    var startMovie = startMovies[Math.floor(Math.random()*startMovies.length)];
+    console.log(startMovie)
+    this.requestMovie(startMovie)
+  }
   
   
   render() {
@@ -158,28 +160,32 @@ class Home extends Component {
 
     return (
       <div className="App">
-        <header className="App-header">
-          <TranslationSwitch />
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Kinoseum</h1>
-        </header>
+        <div className="container">
+          <header className="App-header">
+            <TranslationSwitch />
+            <div className="logo">
+              <img src={logo} className="App-logo" alt="logo" />
+              <h1 className="App-title">Kinoseum</h1>
+            </div>
+          </header>
 
-        <h3>{i18n.t('Ingresa')}</h3>
-        <Autosuggest
-        suggestions={suggestions}
-        onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-        onSuggestionSelected={this.onSuggestionSelected}
-        
-        getSuggestionValue={getSuggestionValue}
-        renderSuggestion={renderSuggestion}
-        inputProps={inputProps}
-      />
+          <h3>{i18n.t('Ingresa')}</h3>
+          <Autosuggest
+          suggestions={suggestions}
+          onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+          onSuggestionSelected={this.onSuggestionSelected}
+          
+          getSuggestionValue={getSuggestionValue}
+          renderSuggestion={renderSuggestion}
+          inputProps={inputProps}
+          />
 
-        <Card 
-          name={this.state.name}
-          description={this.state.description}
-          poster={this.state.poster} />
+          <Card  />
+
+          <Cast />
+
+        </div>
       </div>
     );
   }
@@ -187,7 +193,6 @@ class Home extends Component {
 
   const mapStateToProps = state => {
     return { 
-      articles: state.articles,
       movie: state.movie,
       apiKey: state.apiKey,
       language: state.language
@@ -197,7 +202,6 @@ class Home extends Component {
 
   const mapDispatchToProps = dispatch => {
     return {
-      addArticle: article => dispatch(addArticle(article)),
       updateMovie: movie => dispatch(updateMovie(movie))
     };
   };

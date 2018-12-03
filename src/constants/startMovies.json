@@ -27,5 +27,57 @@
     {
         "name": "Amores perros",
         "id": 55
+    },
+
+    {
+        "name": "EWS",
+        "id": 345
+    },
+
+    {
+        "name": "BR2049",
+        "id": 335984
+    },
+
+    {
+        "name": "Unforgiven",
+        "id": 33
+    },
+
+    {
+        "name": "Let the right one in",
+        "id": 13310
+    },
+
+    {
+        "name": "ikiru",
+        "id": 3782
+    },
+
+    {
+        "name": "Dogville",
+        "id": 553
+    },
+
+    {
+        "name": "Persona",
+        "id": 797
+    },
+    {
+        "name": "Days of heaven",
+        "id": 16642
+    },
+    {
+        "name": "Perfect Blue",
+        "id": 10494
+    },
+    {
+        "name": "The killing of a sacred deer" ,
+        "id": 399057
+    },
+    {
+        "name": "Memories of murder",
+        "id": 11423
     }
+
 ]

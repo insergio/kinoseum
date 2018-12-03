@@ -1,16 +1,15 @@
 @import "../../variables.scss";
 
 .movie-card{
-    padding: 30px 10px 40px;
-    max-width: 600px;
+    padding: 40px 0px;
     margin: auto;
     .description{
-        color: white;
+        color: $main;
         text-align: left;
         margin: auto;
     }
     .name{
-        color: white;
+        color: $main;
         h2{
             margin-top: 20px;
             margin-bottom: 7px;
@@ -24,7 +23,7 @@
         .attribute{
             margin-bottom: 5px;
             p{
-                color: white;
+                color: $main;
                 display: inline;
             }
             .fa-icon{

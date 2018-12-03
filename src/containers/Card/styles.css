@@ -1,13 +1,12 @@
 .movie-card {
-  padding: 30px 10px 40px;
-  max-width: 600px;
+  padding: 40px 0px;
   margin: auto; }
   .movie-card .description {
-    color: white;
+    color: #FFFFFF;
     text-align: left;
     margin: auto; }
   .movie-card .name {
-    color: white; }
+    color: #FFFFFF; }
     .movie-card .name h2 {
       margin-top: 20px;
       margin-bottom: 7px; }
@@ -20,7 +19,7 @@
     .movie-card .movie-info .attribute {
       margin-bottom: 5px; }
       .movie-card .movie-info .attribute p {
-        color: white;
+        color: #FFFFFF;
         display: inline; }
       .movie-card .movie-info .attribute .fa-icon {
         color: #00D8FE;

@@ -1,4 +1,3 @@
-import { ADD_ARTICLE } from "../constants/action-types";
 import { UPDATE_MOVIE } from "../constants/action-types";
 import { UPDATE_LANGUAGE } from "../constants/action-types";
 
@@ -12,8 +11,6 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
-      case ADD_ARTICLE:
-        return { ...state, articles: [...state.articles, action.payload] };
 
       case UPDATE_MOVIE:
         return { ...state, 

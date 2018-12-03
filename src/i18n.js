@@ -15,7 +15,9 @@ i18n
         "Director": "Director",
         "Directores": "Directores",
         "Duración": "Duración",
-        "Reparto": "Reparto"
+        "Reparto": "Reparto",
+        "Ver mas": "Ver más",
+        "Como": "como"
       }
     },
     en: {
@@ -24,7 +26,9 @@ i18n
         "Director": "Director",
         "Directores": "Directors",
         "Duración": "Runtime",
-        "Reparto": "Cast"
+        "Reparto": "Cast",
+        "Ver mas": "See more",
+        "Como": "as"
       }
     }
   },
