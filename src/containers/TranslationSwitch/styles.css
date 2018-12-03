@@ -5,3 +5,8 @@
     cursor: pointer; }
     .switch a.active {
       color: #00D8FE; }
+  @media all and (max-width: 700px) {
+    .switch {
+      position: absolute;
+      top: 0px;
+      right: 20px; } }

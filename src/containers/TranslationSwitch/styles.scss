@@ -9,4 +9,11 @@
             color: $highlight;
         }
     }
+    
+    @media all and (max-width: 700px) { 
+        position: absolute;
+        top: 0px;
+        right: 20px;
+    
+    }
 }
