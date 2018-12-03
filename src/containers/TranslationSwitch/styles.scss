@@ -1,0 +1,13 @@
+@import "../../variables.scss";
+
+.switch{
+    position: absolute;
+    right: 50px;
+    a{
+        cursor: pointer;
+    
+        &.active{
+            color: $highlight;
+        }
+    }
+}

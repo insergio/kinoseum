@@ -6,6 +6,9 @@
         animation: App-logo-spin infinite 20s linear;
         height: 80px; 
     }
+    h3{
+        color: white;
+    }
 
     &-header{
         background-color: #222;
@@ -13,6 +16,7 @@
         padding: 20px;
         color: white;
         margin-bottom: 20px;
+       
     }
 
     &-title{

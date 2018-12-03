@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import logo from '../../logo.svg';
 import './Home.css';
 import Card from '../Card';
+import TranslationSwitch from '../TranslationSwitch';
 import axios from 'axios'
-
+import { withNamespaces } from "react-i18next";
+import i18n from '../../i18n';
 import Autosuggest from 'react-autosuggest';
 import { connect } from "react-redux";
 import { addArticle } from "../../actions/index";
@@ -75,18 +77,7 @@ class Home extends Component {
 
   onSuggestionSelected = (event, {suggestion}) =>{
     console.log(suggestion)
-
-    var params={
-      api_key: this.props.apiKey,
-      language: this.props.language,
-      append_to_response: 'credits'
-
-    }
-    axios.get('https://api.themoviedb.org/3/movie/'+suggestion.id+'?'+this.serialize(params))
-    .then(res => {
-      console.log(res.data)
-      this.setMovie(res.data)
-    })
+    this.requestMovie(suggestion)
   }
 
 
@@ -98,11 +89,12 @@ class Home extends Component {
 
 
   componentDidMount(){
-
     var startMovie = startMovies[Math.floor(Math.random()*startMovies.length)];
-
     console.log(startMovie)
+    this.requestMovie(startMovie)
+  }
 
+  requestMovie(movie){
 
     var params={
       api_key: this.props.apiKey,
@@ -110,12 +102,11 @@ class Home extends Component {
       append_to_response: 'credits'
     }
 
-    axios.get('https://api.themoviedb.org/3/movie/'+startMovie.id+'?'+this.serialize(params))
+    axios.get('https://api.themoviedb.org/3/movie/'+movie.id+'?'+this.serialize(params))
     .then(res => {
       console.log(res.data)
       this.setMovie(res.data)
     })
-
   }
 
   
@@ -140,6 +131,17 @@ class Home extends Component {
       }
     return str.join("&");
   }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log("didupdate")
+    console.log(prevProps.language)
+    console.log(this.props.language)
+
+    if (prevProps.language !== this.props.language) {
+      console.log(this.props.movie)
+      this.requestMovie(this.props.movie)
+    }
+}
   
   
   render() {
@@ -157,11 +159,12 @@ class Home extends Component {
     return (
       <div className="App">
         <header className="App-header">
+          <TranslationSwitch />
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Kinoseum</h1>
-          <h3>Ingresa una película para empezar</h3>
         </header>
 
+        <h3>{i18n.t('Ingresa')}</h3>
         <Autosuggest
         suggestions={suggestions}
         onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
@@ -199,4 +202,4 @@ class Home extends Component {
     };
   };
 
-  export default connect(mapStateToProps, mapDispatchToProps)(Home);
+  export default connect(mapStateToProps, mapDispatchToProps)(withNamespaces('common')(Home));

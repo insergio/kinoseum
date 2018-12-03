@@ -1,0 +1,7 @@
+.switch {
+  position: absolute;
+  right: 50px; }
+  .switch a {
+    cursor: pointer; }
+    .switch a.active {
+      color: #00D8FE; }
